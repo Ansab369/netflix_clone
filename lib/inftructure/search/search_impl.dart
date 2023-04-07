@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,6 +19,7 @@ class SearchImpl implements SearchService {
         ApiEndPoints.search,
         queryParameters: {'query': movieQuery},
       );
+      // log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = SearchRepo.fromJson(response.data);
         return Right(result);
